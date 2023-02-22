@@ -10,7 +10,7 @@ Watching files for changes in:
 
 ## configuration
 
-Set variables `debug`, `send_mail` and `mail_to` in watcher.py.  
+Set variables `debug`, `send_mail` and `mail_to` in [`watcher.py`](https://github.com/rokj/watcher/blob/main/watcher.py).  
 
 Set files to watch in `files-to-watch.cfg`. Example in [`files-to-watch.dist.cfg`](https://github.com/rokj/watcher/blob/main/files-to-watch.dist.cfg).
 

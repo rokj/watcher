@@ -19,3 +19,11 @@ Set files to watch in `files-to-watch.cfg`. Example in [`files-to-watch.dist.cfg
 `python3 watcher.py`
 
 Script will track changes and will send email (if set) and write to logfile `watcher.log` if some file from files-to-watch.cfg has changed.
+
+Check watcher.log for changes.
+
+## requirements
+
+You need to have https://linux.die.net/man/1/mailx installed on the system for script to send email when file changed.
+
+

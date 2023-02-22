@@ -24,6 +24,6 @@ Check watcher.log for changes.
 
 ## requirements
 
-You need to have https://linux.die.net/man/1/mailx installed on the system for script to send email when file changed.
-
+- you need to user public key authentication
+- you need to have https://linux.die.net/man/1/mailx installed on the system for script to send email when file changed.
 

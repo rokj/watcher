@@ -1,6 +1,6 @@
 # watcher
 
-Watcher is simple script for tracking changes of files remotly.
+Watcher is simple script for tracking changes of files remotely.
 
 Watching files for changes in:  
 | sha512       | ls -al                                                 |  

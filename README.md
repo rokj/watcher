@@ -24,6 +24,6 @@ Check watcher.log for changes.
 
 ## requirements
 
-- you need to user public key authentication
+- you need to configure public key authentication for connection to remote machines
 - you need to have https://linux.die.net/man/1/mailx installed on the system if you wish script sends an email when file is changed
 

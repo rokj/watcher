@@ -1,7 +1,7 @@
 import json
 import os.path
 import subprocess
-from subprocess import PIPE
+from subprocess import PIPE, CalledProcessError
 import datetime
 import sys
 
@@ -26,7 +26,7 @@ def run_rcmd(remote, command):
 
     print("doing check on >>{0}<< command >>{1}<<".format(remote, command))
 
-    p = subprocess.check_output("ssh {0} \"{1}\"".format(remote, command), shell=True)
+    p = subprocess.check_output("ssh -o PubkeyAuthentication=yes -o PreferredAuthentications=publickey {0} \"{1}\"".format(remote, command), shell=True)
     output = p.decode("utf-8").replace("\n", "")
     if debug:
         print("|{0}|".format(output))
@@ -57,8 +57,11 @@ changed_files = []
 for l in lines:
     remote, file = l.split(":") 
     
-    sha = run_rcmd(remote, "sha512sum {0} | cut -d' ' -f1".format(file))
-    ls = run_rcmd(remote, "ls -la {0}".format(file))
+    try:
+        sha = run_rcmd(remote, "sha512sum {0} | cut -d' ' -f1".format(file))
+    except CalledProcessError as e:
+        changed_files.append("warning: cannot execute command >>{0}<<".format(l))
+        continue
 
     if not l in db:
         db[l] = {"history": []}
@@ -69,7 +72,7 @@ for l in lines:
         db[l]["history"][-1]["sha512"] != db[l]["history"][-2]["sha512"] or 
         db[l]["history"][-1]["ls"] != db[l]["history"][-2]["ls"]
     ):
-        changed_files.append("warning: file {0} changed".format(l))
+        changed_files.append("warning: file >>{0}<< changed".format(l))
 
 
 with open("db.json", 'w') as f:

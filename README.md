@@ -14,3 +14,8 @@ Set variables `debug`, `send_mail` and `mail_to` in [`watcher.py`](https://githu
 
 Set files to watch in `files-to-watch.cfg`. Example in [`files-to-watch.dist.cfg`](https://github.com/rokj/watcher/blob/main/files-to-watch.dist.cfg).
 
+## run
+
+`python3 watcher.py`
+
+Script will track changes and will send email (if set) and write to logfile `watcher.log` if some file from files-to-watch.cfg has changed.
